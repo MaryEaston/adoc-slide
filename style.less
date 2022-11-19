@@ -83,15 +83,6 @@ h2::after {
   edge: 36 * @px; // スライド内の端の余白
 };
 
-//
-@view: {
-  edge: 10 * @px;
-};
-
-#content {
-  font-size: @font-sizes[base];
-}
-
 h1 {
   position: absolute;
   margin: 0;
@@ -144,14 +135,21 @@ html {
 }
 
 body {
-  margin-left: @view[edge];
-  margin-right: calc(@view[edge] - calc(100vw - 100%));
+  margin: 0;
+  padding: 0;
+  width: 100vw;
   position: relative;
+
+  font-size: @font-sizes[base];
+}
+
+#content {
+  height: 0;
 }
 
 #preamble {
   aspect-ratio: 16/9;
-  width: calc(100vw - @view[edge]*2);
+  width: 100vw;
   position: relative;
 
   transform: translate(0%, -100%);
@@ -165,6 +163,10 @@ body {
   }
 }
 
+// #header {
+//   transform: translate(0%, 100%);
+// }
+
 .sect1 {
   transform: translate(0%, -100%);
 }
@@ -172,7 +174,7 @@ body {
 .sect1,
 #header {
   aspect-ratio: 16/9;
-  width: calc(100vw - @view[edge]*2);
+  width: 100vw;
   position: relative;
   overflow: hidden;
 
@@ -190,6 +192,18 @@ body {
     width: calc(100% - (@blank[edge] * 2));
     margin: @blank[edge];
   }
+}
+
+#footer {
+  // aspect-ratio: 16/9;
+  // width: 100vw;
+  // position: relative;
+  // overflow: hidden;
+
+  // background-color: white;
+
+  // transform: translate(0%, -100%);
+  display: none;
 }
 
 .paragraph {
@@ -318,6 +332,8 @@ td {
   }
 
   #footer {
-    display: none;
+    // display: none;
+    border: 0;
+    width: 100vw;
   }
 }

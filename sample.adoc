@@ -1,0 +1,14 @@
+:stem:
+
+# Sample Slide
+Mary Easton
+
+subtitle(required it)
+
+## paragraph
+
+normal paragraph
+
+*bole*
+
+_italic_
