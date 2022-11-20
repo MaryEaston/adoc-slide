@@ -1,4 +1,7 @@
 // 装飾
+.sect1 {
+  background-color: #fffbf0;
+}
 
 .sect1::before {
   content: "";
@@ -26,6 +29,21 @@
 
 h1 {
   text-align: center;
+
+  top: 45%;
+  left: 50%;
+}
+
+h1 + .details {
+  top: 75%;
+  left: 50%;
+}
+
+#preamble {
+  .paragraph {
+    top: 65%;
+    left: 50%;
+  }
 }
 
 h2::after {
@@ -50,6 +68,39 @@ h2::after {
   .author {
     color: rgb(16, 16, 16);
   }
+
+  background-image: url(images/image2.jpg);
+  background-position: center;
+  background-size: 90vw 55vw;
+  background-repeat: no-repeat;
+  background-color: white;
+}
+
+#header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20%;
+  width: 100%;
+  border-top: 0.4em solid rgb(139, 114, 42);
+  box-sizing: border-box;
+
+  background-image: url(./images/image3.png);
+  background-size: contain;
+  background-position: 50% 0;
+  background-repeat: no-repeat;
+}
+
+#header::after {
+  content: "";
+  display: block;
+  width: 80vw;
+  height: 2px;
+  background-color: black;
+  position: absolute;
+  top: 55%;
+  left: 10vw;
 }
 
 // ベース
@@ -91,14 +142,10 @@ h1 {
   font-size: @font-sizes[title] * @font-sizes[base];
   font-weight: bold;
 
-  top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
 }
 h1 + .details {
   position: absolute;
-  top: 70%;
-  left: 50%;
   transform: translate(-50%, -50%);
 
   font-size: @font-sizes[author] * @font-sizes[base];
@@ -148,37 +195,31 @@ body {
 }
 
 #preamble {
+  z-index: 1;
   aspect-ratio: 16/9;
   width: 100vw;
-  position: relative;
+  position: absolute;
 
   transform: translate(0%, -100%);
 
   .paragraph {
     position: absolute;
-
-    top: 60%;
-    left: 50%;
     transform: translate(-50%, -50%);
   }
 }
 
-// #header {
-//   transform: translate(0%, 100%);
-// }
-
 .sect1 {
-  transform: translate(0%, -100%);
+  // transform: translate(0%, -100%);
 }
 
 .sect1,
 #header {
+  z-index: 0;
   aspect-ratio: 16/9;
   width: 100vw;
   position: relative;
   overflow: hidden;
 
-  background-color: white;
   counter-increment: page;
   .sectionbody {
     position: absolute;
@@ -195,14 +236,6 @@ body {
 }
 
 #footer {
-  // aspect-ratio: 16/9;
-  // width: 100vw;
-  // position: relative;
-  // overflow: hidden;
-
-  // background-color: white;
-
-  // transform: translate(0%, -100%);
   display: none;
 }
 
