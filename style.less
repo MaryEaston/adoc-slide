@@ -1,8 +1,11 @@
 // 装飾
+
+// ページの背景
 .sect1 {
   background-color: #fffbf0;
 }
 
+// ページの装飾
 .sect1::before {
   content: "";
   position: absolute;
@@ -20,25 +23,16 @@
 }
 
 .sect1::after {
-  content: counter(page);
+  content: counter(page-num);
   position: absolute;
   bottom: 0;
   right: 1em;
   color: black;
 }
 
-h1 {
-  text-align: center;
+// スライド情報(著者等)の設定
 
-  top: 45%;
-  left: 50%;
-}
-
-h1 + .details {
-  top: 75%;
-  left: 50%;
-}
-
+// サブタイトルの設定
 #preamble {
   .paragraph {
     top: 65%;
@@ -46,6 +40,7 @@ h1 + .details {
   }
 }
 
+// ページタイトルの装飾
 h2::after {
   content: "";
   position: absolute;
@@ -56,17 +51,27 @@ h2::after {
   border-bottom: 0.2em double rgb(32, 56, 100);
 }
 
+// スライド全体の設定
 #content {
   color: rgb(32, 56, 100);
 }
 
+// 表紙の設定
 #header {
   h1 {
     color: rgb(16, 16, 16);
+
+    text-align: center;
+
+    top: 45%;
+    left: 50%;
   }
 
-  .author {
+  .details {
     color: rgb(16, 16, 16);
+
+    top: 75%;
+    left: 50%;
   }
 
   background-image: url(images/image2.jpg);
@@ -76,6 +81,7 @@ h2::after {
   background-color: white;
 }
 
+// 表紙の装飾
 #header::before {
   content: "";
   position: absolute;
@@ -209,7 +215,7 @@ body {
 }
 
 .sect1 {
-  // transform: translate(0%, -100%);
+  counter-increment: page-num;
 }
 
 .sect1,
@@ -220,7 +226,6 @@ body {
   position: relative;
   overflow: hidden;
 
-  counter-increment: page;
   .sectionbody {
     position: absolute;
     height: calc(
