@@ -1,0 +1,301 @@
+// 装飾
+
+.sect1::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20%;
+  width: 100%;
+  border-top: 0.4em solid rgb(139, 114, 42);
+  box-sizing: border-box;
+
+  background-image: url(./images/image3.png);
+  background-size: contain;
+  background-position: 95% 0;
+  background-repeat: no-repeat;
+}
+
+.sect1::after {
+  content: counter(page);
+  position: absolute;
+  bottom: 0;
+  right: 1em;
+  color: black;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40%;
+  height: 0;
+  border-bottom: 0.2em double rgb(32, 56, 100);
+}
+
+h1,
+#content {
+  color: rgb(32, 56, 100);
+}
+
+// ベース
+
+@px: 0.1vw;
+
+@color: {
+  red: rgb(255, 0, 0);
+  blue: rgb(0, 0, 255);
+};
+
+@font-sizes: {
+  base: 30 * @px;
+  title: 1.5;
+  page-title: 1.5;
+  sub-title: 1;
+
+  tiny: 0.5;
+  small: 0.75;
+  large: 1.5;
+  huge: 2;
+};
+
+@blank: {
+  page-title-head: 1;
+  page-title-height: 2;
+  sub-title-head: 0;
+  sub-title-height: 2;
+  edge: 36 * @px;
+};
+
+@view: {
+  edge: 10 * @px;
+};
+
+#content {
+  font-size: @font-sizes[base];
+}
+
+h1 {
+  position: absolute;
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  font-size: @font-sizes[title] * @font-sizes[base];
+  font-weight: bold;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h2 {
+  position: relative;
+  line-height: @blank[page-title-height];
+  padding-left: @font-sizes[page-title] * @font-sizes[base] *
+    @blank[page-title-head];
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  font-size: @font-sizes[page-title] * @font-sizes[base];
+  font-weight: normal;
+}
+
+h3 {
+  position: relative;
+  line-height: @blank[sub-title-height];
+  padding-left: @font-sizes[sub-title] * @font-sizes[base] *
+    @blank[sub-title-head];
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  font-size: @font-sizes[sub-title] * @font-sizes[base];
+  font-weight: bold;
+}
+
+body {
+  margin: @view[edge];
+  position: relative;
+}
+
+#header {
+  aspect-ratio: 16/9;
+  width: calc(100vw - @view[edge]*2);
+  position: absolute;
+  overflow: hidden;
+  border: 1px solid gray;
+
+  background-color: white;
+}
+
+.sect1,
+#preamble {
+  aspect-ratio: 16/9;
+  width: calc(100vw - @view[edge]*2);
+  position: relative;
+  overflow: hidden;
+
+  border: 1px solid gray;
+
+  page-break-after: always;
+}
+
+.sect1 {
+  background-color: white;
+  counter-increment: page;
+  .sectionbody {
+    position: absolute;
+    height: calc(
+      100% -
+        (
+          @font-sizes[page-title] * @font-sizes[base] *
+            @blank[page-title-height]
+        ) - (@blank[edge] * 2)
+    );
+    width: calc(100% - (@blank[edge] * 2));
+    margin: @blank[edge];
+  }
+}
+
+#preamble {
+  .sectionbody {
+    height: calc(100% - (@blank[edge] * 2));
+    width: calc(100% - (@blank[edge] * 2));
+    margin: @blank[edge];
+  }
+}
+
+.paragraph {
+  p {
+    margin: 0;
+  }
+  width: fit-content;
+}
+
+.tiny {
+  font-size: @font-sizes[base] * @font-sizes[tiny];
+}
+.small {
+  font-size: @font-sizes[base] * @font-sizes[small];
+}
+.large {
+  font-size: @font-sizes[base] * @font-sizes[large];
+}
+.huge {
+  font-size: @font-sizes[base] * @font-sizes[huge];
+}
+
+.red {
+  color: @color[red];
+}
+
+.blue {
+  color: @color[blue];
+}
+
+ol,
+ul,
+dl {
+  margin: 0;
+  dd p,
+  p {
+    margin: 0;
+  }
+  dt {
+    font-weight: bold;
+  }
+}
+
+ol,
+ul,
+dd {
+  margin-inline-start: 0;
+  padding-inline-start: @font-sizes[base];
+}
+
+.tableblock {
+  border-collapse: collapse;
+  table-layout: auto;
+  p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin: calc(@font-sizes[base] / 2);
+  }
+  th {
+    padding: calc(@font-sizes[base] / 2);
+  }
+}
+
+td {
+  border-width: 1px 0px;
+  border-color: black;
+  border-style: solid;
+}
+.center {
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.for(@c:2,3) {
+  .col@{c} {
+    .sectionbody {
+      column-count: @c;
+      .col-break {
+        break-before: column;
+      }
+    }
+  }
+}
+
+.for(@l:-20,120) {
+  .for(@t:-20,120) {
+    .abs@{t}-@{l} {
+      position: absolute;
+      white-space: nowrap;
+      top: @t * 1%;
+      left: @l * 1%;
+    }
+  }
+  .rel@{l} {
+    position: relative;
+    white-space: nowrap;
+    left: @l * 1%;
+  }
+}
+
+.for(@w:0,100) {
+  .img-width@{w} .content img {
+    width: @w * 1vw;
+  }
+}
+
+// 印刷
+
+@media print {
+  @page {
+    size: 100vw calc(100vw * 9 / 16);
+    margin: 0;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+
+    print-color-adjust: exact;
+  }
+
+  .sect1,
+  #header,
+  #preamble {
+    border: 0;
+    width: 100vw;
+  }
+
+  #footer {
+    display: none;
+  }
+}
