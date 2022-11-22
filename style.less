@@ -38,9 +38,18 @@ h2::after {
   border-bottom: 0.2em double rgb(32, 56, 100);
 }
 
-h1,
 #content {
   color: rgb(32, 56, 100);
+}
+
+#header {
+  h1 {
+    color: rgb(16, 16, 16);
+  }
+
+  .author {
+    color: rgb(16, 16, 16);
+  }
 }
 
 // ベース
@@ -55,6 +64,7 @@ h1,
 @font-sizes: {
   base: 30 * @px;
   title: 1.5;
+  author: 1.2;
   page-title: 1.5;
   sub-title: 1;
 
@@ -64,14 +74,16 @@ h1,
   huge: 2;
 };
 
+// 余白の設定
 @blank: {
   page-title-head: 1;
   page-title-height: 2;
   sub-title-head: 0;
   sub-title-height: 2;
-  edge: 36 * @px;
+  edge: 36 * @px; // スライド内の端の余白
 };
 
+//
 @view: {
   edge: 10 * @px;
 };
@@ -91,6 +103,14 @@ h1 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+h1 + .details {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  font-size: @font-sizes[author] * @font-sizes[base];
 }
 
 h2 {
@@ -117,34 +137,45 @@ h3 {
   font-weight: bold;
 }
 
+html {
+  margin: 0;
+  padding: 0;
+  background-color: gray;
+}
+
 body {
-  margin: @view[edge];
+  margin-left: @view[edge];
+  margin-right: calc(@view[edge] - calc(100vw - 100%));
   position: relative;
 }
 
-#header {
-  aspect-ratio: 16/9;
-  width: calc(100vw - @view[edge]*2);
-  position: absolute;
-  overflow: hidden;
-  border: 1px solid gray;
-
-  background-color: white;
-}
-
-.sect1,
 #preamble {
   aspect-ratio: 16/9;
   width: calc(100vw - @view[edge]*2);
   position: relative;
-  overflow: hidden;
 
-  border: 1px solid gray;
+  transform: translate(0%, -100%);
 
-  page-break-after: always;
+  .paragraph {
+    position: absolute;
+
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .sect1 {
+  transform: translate(0%, -100%);
+}
+
+.sect1,
+#header {
+  aspect-ratio: 16/9;
+  width: calc(100vw - @view[edge]*2);
+  position: relative;
+  overflow: hidden;
+
   background-color: white;
   counter-increment: page;
   .sectionbody {
@@ -156,14 +187,6 @@ body {
             @blank[page-title-height]
         ) - (@blank[edge] * 2)
     );
-    width: calc(100% - (@blank[edge] * 2));
-    margin: @blank[edge];
-  }
-}
-
-#preamble {
-  .sectionbody {
-    height: calc(100% - (@blank[edge] * 2));
     width: calc(100% - (@blank[edge] * 2));
     margin: @blank[edge];
   }
@@ -289,8 +312,7 @@ td {
   }
 
   .sect1,
-  #header,
-  #preamble {
+  #header {
     border: 0;
     width: 100vw;
   }
