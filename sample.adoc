@@ -3,12 +3,89 @@
 # Sample Slide
 Mary Easton
 
-subtitle(required it)
+subtitle, date, location ...
 
-## paragraph
+## paragraph 1
 
-normal paragraph
+This is a sample slide that made by using asciidoc. For using asciidoc, this repository is style sheet in LESS.
 
-*bole*
+To separate sentences, insert blanc line.
 
-_italic_
+Text style can set like under examples.
+
+### examples
+
+eg. normal *bold* _italic_
+
+## paragraph 2
+
+Using class let set style do not defined by asciidoc.
+
+### examples
+
+[.red]##red## [.blue]##blue##
+
+[.tiny]##tiny## [.small]##small## normal [.big]##big## [.huge]##huge##
+
+[.col2]
+## colum
+
+If you want to use colum, set `[.colX]` (X is 2 or 3) above page title. This make page separate 2 or 3 section.
+
+[.col-break]
+
+`[.col-break]` is break colum.
+
+[.col2]
+## other text (list)
+
+### list
+
+* item0
+* item1
+** item11
+** item12
+* item2
+
+[.col-break]
+
+### order list
+
+. item0
+. item1
+.. item11
+.. item12
+. item2
+
+## other text (list)
+
+item1::
+explanation of item1
+item2::
+explanation of item2
+item3::
+explanation of item3
+
+## image
+
+Images can be set
+
+.Tokyo Tech Banner
+[#img-TokyoTechBanner,link=https://www.titech.ac.jp]
+image::images//image3.png[TokyoTechBanner,10%]
+
+## position
+
+[.abs0-75]
+For set absolute position, write `[.absXX-YY]` above object.
+
+[.abs50-75.center]
+.Tokyo Tech Banner
+[#img-TokyoTechBanner2,link=https://www.titech.ac.jp]
+image::images//image3.png[TokyoTechBanner,10%]
+
+## link
+
+東京工業大学のロゴ付きバナー <<img-TokyoTechBanner>>
+
+stem:[y = \sum_{k=0}^n sin(\theta + \alpha_k)]
