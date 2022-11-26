@@ -1,5 +1,3 @@
-:stem:
-
 # Sample Slide
 Mary Easton
 
@@ -27,14 +25,31 @@ Using class let set style do not defined by asciidoc.
 
 [.tiny]##tiny## [.small]##small## normal [.big]##big## [.huge]##huge##
 
-[.col2]
+## block
+
+[.red]
+====
+If you want to style many lines of text, you can use a block.
+
+All text in the block is styled
+====
+
 ## colum
 
-If you want to use colum, set `[.colX]` (X is 2 or 3) above page title. This make page separate 2 or 3 section.
+[.col2]
+====
+If you want to use colum, set `[.colX]` (X is 2 or 3) to block or page title.
+This make page separate 2 or 3 section.
 
-[.col-break]
+It is not break until a new line is inserted.
+====
 
-`[.col-break]` is break colum.
+[.col2line]
+====
+To set `[.colXline]` instead of `[.colX]`, colum separated lines.
+
+Insert `[.col-break]`, to explicitly break.
+====
 
 [.col2]
 ## other text (list)
@@ -69,7 +84,7 @@ explanation of item3
 ## image
 
 Images can be set
-
+[.center.abs50-50]
 .Tokyo Tech Banner
 [#img-TokyoTechBanner,link=https://www.titech.ac.jp]
 image::images//image3.png[TokyoTechBanner,10%]
@@ -82,10 +97,55 @@ For set absolute position, write `[.absXX-YY]` above object.
 [.abs50-75.center]
 .Tokyo Tech Banner
 [#img-TokyoTechBanner2,link=https://www.titech.ac.jp]
-image::images//image3.png[TokyoTechBanner,10%]
+image::images//image3.png[TokyoTechBanner]
 
 ## link
 
 東京工業大学のロゴ付きバナー <<img-TokyoTechBanner>>
 
-stem:[y = \sum_{k=0}^n sin(\theta + \alpha_k)]
+## test
+
+inline \(x^{2}\) \(2^{2k} (k!)^2\)
+
+[.center.rel50.tiny]
+\[
+\frac{\pi}{2} =
+\left( \int_{0}^{\infty} \frac{\sin x}{\sqrt{x}} dx \right)^2 =
+\sum_{k=0}^{\infty} \frac{(2k)!}{2^{2k} (k!)^2} \frac{1}{2k+1} =
+\prod_{k=1}^{\infty} \frac{4k^2} {4k^2 - 1}
+\]
+
+[latexmath.tiny]
+++++
+\begin{pmatrix}
+a_{11} & \cdots & a_{1i} & \cdots & a_{1n}\\
+\vdots & \ddots &        &        & \vdots \\
+a_{i1} &        & a_{ii} &        & a_{in} \\
+\vdots &        &        & \ddots & \vdots \\
+a_{n1} & \cdots & a_{ni} & \cdots & a_{nn}
+\end{pmatrix}
+\times
+\begin{vmatrix}
+a_{11} & \cdots & a_{1i} & \cdots & a_{1n}\\
+\vdots & \ddots &        &        & \vdots \\
+a_{i1} &        & a_{ii} &        & a_{in} \\
+\vdots &        &        & \ddots & \vdots \\
+a_{n1} & \cdots & a_{ni} & \cdots & a_{nn}
+\end{vmatrix}
+++++
+
+## block
+
+[.col2]
+====
+If you want to use colum, set `[.colX]` (X is 2 or 3) above page title. This make page separate 2 or 3 section.
+====
+
+++++
+<script
+  type="text/javascript"
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js?config=TeX-MML-AM_HTMLorMML"
+></script>
+++++
