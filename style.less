@@ -316,12 +316,39 @@ td {
 }
 
 .for(@c:2,3) {
-  .col@{c} {
+  .col@{c}, .col@{c}line{
     .sectionbody {
       column-count: @c;
+      .paragraph {
+        break-inside: avoid-column;
+      }
       .col-break {
         break-before: column;
       }
+    }
+  }
+  .col@{c}line{
+    .sectionbody {
+      column-rule: solid 1px #888888;
+    }
+  }
+}
+
+.for(@c:2,3) {
+  .col@{c}, .col@{c}line{
+    .content {
+      column-count: @c;
+      .paragraph {
+        break-inside: avoid-column;
+      }
+      .col-break {
+        break-before: column;
+      }
+    }
+  }
+  .col@{c}line{
+    .content {
+      column-rule: solid 1px #888888;
     }
   }
 }
@@ -340,6 +367,9 @@ td {
     position: relative;
     white-space: nowrap;
     left: @l * 1%;
+  }
+  .rel@{l}.paragraph.center{
+    transform: translate(-50%, 0%);
   }
 }
 
