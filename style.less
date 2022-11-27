@@ -310,6 +310,7 @@ td {
   border-color: black;
   border-style: solid;
 }
+
 .center {
   transform: translate(-50%, -50%);
   text-align: center;
@@ -336,7 +337,7 @@ td {
 
 .for(@c:2,3) {
   .col@{c}, .col@{c}line{
-    .content {
+    >.content {
       column-count: @c;
       .paragraph {
         break-inside: avoid-column;
@@ -347,7 +348,7 @@ td {
     }
   }
   .col@{c}line{
-    .content {
+    >.content {
       column-rule: solid 1px #888888;
     }
   }
@@ -368,7 +369,7 @@ td {
     white-space: nowrap;
     left: @l * 1%;
   }
-  .rel@{l}.paragraph.center{
+  .rel@{l}.center{
     transform: translate(-50%, 0%);
   }
 }
