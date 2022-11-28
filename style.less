@@ -312,7 +312,6 @@ td {
 }
 
 .center {
-  transform: translate(-50%, -50%);
   text-align: center;
 }
 
@@ -354,23 +353,34 @@ td {
   }
 }
 
+@page-title-height: @font-sizes[page-title] * @font-sizes[base] * @blank[page-title-height];
+
 .for(@l:-20,120) {
   .for(@t:-20,120) {
     .abs@{t}-@{l} {
+      break-before: always;
       position: absolute;
       white-space: nowrap;
-      top: @t * 1%;
+      top: calc(-1 * @page-title-height);
       left: @l * 1%;
+      transform: translate(0,calc(@t * 1% + @page-title-height));
       width: 100%;
+      height: 100%;
+    }
+    .abs@{t}-@{l}.center {
+      transform: translate(-50%,calc(@t * 1% + @page-title-height));
     }
   }
   .rel@{l} {
     position: relative;
     white-space: nowrap;
+    top: calc(-1 * @page-title-height);
     left: @l * 1%;
+    transform: translate(0, @page-title-height);
+    width: 100%;
   }
   .rel@{l}.center{
-    transform: translate(-50%, 0%);
+    transform: translate(-50%, @page-title-height);
   }
 }
 
