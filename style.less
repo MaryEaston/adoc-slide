@@ -319,9 +319,7 @@ td {
   .col@{c}, .col@{c}line{
     .sectionbody {
       column-count: @c;
-      .paragraph {
-        break-inside: avoid-column;
-      }
+
       .col-break {
         break-before: column;
       }
@@ -338,9 +336,6 @@ td {
   .col@{c}, .col@{c}line{
     >.content {
       column-count: @c;
-      .paragraph {
-        break-inside: avoid-column;
-      }
       .col-break {
         break-before: column;
       }
@@ -351,6 +346,10 @@ td {
       column-rule: solid 1px #888888;
     }
   }
+}
+
+.paragraph,.ulist,.olist,.dlist{
+  break-inside: avoid-column;
 }
 
 @page-title-height: @font-sizes[page-title] * @font-sizes[base] * @blank[page-title-height];
