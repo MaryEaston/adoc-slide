@@ -3,6 +3,7 @@
 // ページの背景
 .sect1 {
   background-color: #fffbf0;
+  break-before: page;
 }
 
 // ページの装飾
@@ -58,13 +59,15 @@ h2::after {
 
 // 表紙の設定
 #header {
+  height: 100%;
+  width: 100%;
   h1 {
     color: rgb(16, 16, 16);
 
     text-align: center;
     line-break: strict;
 
-    width: 70vw;
+    width: 100vw;
 
     bottom: 35%;
     left: 50%;
@@ -285,6 +288,9 @@ ol,
 ul,
 dl {
   margin: 0;
+  padding-top: @font-sizes[base]/2;
+  padding-bottom: @font-sizes[base]/2;
+
   dd p,
   p {
     margin: 0;
